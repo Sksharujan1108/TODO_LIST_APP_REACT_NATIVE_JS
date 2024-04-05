@@ -15,6 +15,7 @@ const AddItem = ({ isAddMode, onCloseModel, addItem }) => {
                   placeholder="Add Item" 
                   onChangeText={(text) => setItem(text)}
                   value={item}
+                  autoCapitalize="none"
                 />
             </View>
 

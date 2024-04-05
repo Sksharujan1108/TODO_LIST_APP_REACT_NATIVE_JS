@@ -19,6 +19,12 @@ const TodoAppScreen = () => {
         setIsAddMode(false)
     }
 
+    const handleDelete = (itemId) => {
+        setItems((currentItems) => {
+            return currentItems.filter((item) => item.id != itemId)
+        })
+    } 
+
     const onCloseModel = () => {
         setIsAddMode(false);
     };
@@ -44,6 +50,7 @@ const TodoAppScreen = () => {
             <ItemDisplay
               items={items}
               setItems={setItems}
+              handleDelete={handleDelete}
             />
         </View>
     );
@@ -56,11 +63,12 @@ const styles = StyleSheet.create({
     root: {
         flex: 1,
         // justifyContent: 'center',
-        marginTop: 60,
-        // alignItems: 'center',
+        
+        backgroundColor: '#A19A9A',
     },
     title: {
-        fontSize: 30,
+        marginTop: 60,
+        fontSize: 40,
         fontWeight: 'bold',
         color: '#4A90E2',
         textAlign: 'center',

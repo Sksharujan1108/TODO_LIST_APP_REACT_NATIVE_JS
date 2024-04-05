@@ -1,22 +1,23 @@
 import { FlatList, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import React from 'react';
 
-const ItemDisplay = ({ items }) => {
+const ItemDisplay = ({ items, handleDelete }) => {
   return (
     <View style={styles.container}>
       <FlatList 
-        keyExtractor={(item, index) => item.id.toString()}
+        keyExtractor={(item, index) => item.id}
         data={items}
-        renderItem={({ item }) => (
-          <View>
+        renderItem={itemData  => (
             <View style={styles.itemContainer}>
-              <Text style={styles.itemName}>{item.value}</Text>
-            </View>
+              <Text style={styles.itemName}>{itemData?.item.value}</Text>
 
-            <TouchableOpacity onPress={() => deleteItem(item.id)}>
-              <Text>Delete</Text>
-            </TouchableOpacity>
-          </View>
+              <TouchableOpacity 
+                onPress={() => handleDelete(itemData.item.id)}
+                style={{padding: 10, backgroundColor: 'red', borderRadius: 10}}x
+              >
+                  <Text>Delete</Text>
+              </TouchableOpacity>
+            </View>
         )}
       />
     </View>
@@ -28,10 +29,18 @@ export default ItemDisplay;
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#FFF',
+    backgroundColor: 'pink',
   },
   itemContainer: {
-    backgroundColor: '#F6F6F6',
+    width: '80%',
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    alignSelf: 'center',
+    backgroundColor: '#C5BCBC',
+    borderColor: '#F6F6',
+    borderWidth: 3,
+    marginTop: 20,
     borderRadius: 10,
     elevation: 4,
     marginBottom: 10,
